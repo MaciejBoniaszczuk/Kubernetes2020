@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+
+kind: ReplicaSet
+
+metadata:
+    name: myapp-replicaset
+    labels:
+        app: myapp
+        type: frontend
+
+spec:
+    template:
+        metadata:
+            name: myapp-pod
+            labels:
+                app: myapp
+                type: frontend
+        
+        spec:
+            containers:
+                - name: my-backend-container
+                  image: maciejb/random-number
+                  ports:
+                    - containerPort: 4000
+                   
+    replicas: 3
+    selector:
+        matchLabels:
+           type: frontend
+    
