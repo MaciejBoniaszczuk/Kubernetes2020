@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+    name: nginx-deployment
+    labels:
+        app: mynginx
+        type: nginx
+
+spec:
+    template:
+        metadata:
+            name: mynginx-pod
+            labels:
+                app: mynginx
+                type: nginx
+
+        spec:
+            containers:
+                - name: my-nginx-container
+                  image: maciejb/cluster-nginx
+
+    replicas: 1
+    selector:
+        matchLabels:
+            type: nginx

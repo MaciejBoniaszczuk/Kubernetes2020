@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+    name: frontend-deployment
+    labels:
+        app: myfrontend
+        type: frontend
+
+spec:
+    template:
+        metadata:
+            name: myfrontend-pod
+            labels:
+                app: myfrontend
+                type: frontend
+
+        spec:
+            containers:
+                - name: my-frontend-container
+                  image: maciejb/cluster-frontend
+
+    replicas: 4
+    selector:
+        matchLabels:
+            type: frontend

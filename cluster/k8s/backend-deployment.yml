@@ -26,7 +26,19 @@ spec:
                       value: my-redis-service
                     - name: REDIS_PORT
                       value: '6379'
-
+                    - name: WELCOME_MESSAGE
+                      valueFrom:
+                        configMapKeyRef:
+                          name: myapp-config
+                          key: WELCOME_MESSAGE
+                    - name: PG_PASSWORD
+                      valueFrom:
+                        secretKeyRef:
+                            name: myapp-secret
+                            key: PG_PASSWORD
+                  envFrom:
+                    - configMapRef:
+                        name: postgres-config
     replicas: 3
     selector:
         matchLabels:
