@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-const random = Math.random();
+const random_number = Math.random();
 
 app.get("/", (req, res) => {
-   return res.json(random);
+   return res.json(random_number);
 });
 
 app.listen(4000, () => {

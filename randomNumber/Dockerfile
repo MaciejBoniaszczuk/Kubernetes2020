@@ -1,13 +1,13 @@
-FROM node:alpine
+FROM node:7
 
 WORKDIR /opt/app
 
-COPY package.json yarn.lock? ./
+COPY package.json .
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
-EXPOSE 4000
+CMD node index.js
 
-CMD ["yarn", "start"]
+EXPOSE 4000
